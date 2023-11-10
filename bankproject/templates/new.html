@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <title>New Page</title>
+</head>
+<body style="background-color:#b22222;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Libre+Baskerville&family=Roboto:ital,wght@1,700&family=Young+Serif&display=swap" rel="stylesheet">
+
+<div class="container">
+    <br>
+     <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 ">
+
+<!--        <div class="col-sm-6">-->
+        <div class="card" style="width:18rem;">
+            <div class="card-body">
+                <form method="POST">
+          {% csrf_token %}
+           <p class="card-text" style="color:#c71585; font-size:18px;text-align:center; font-weight:bold;">Click below button for customer registration </p> <br>
+          <a href="{% url 'bankapp:customer' %}" class="btn btn-secondary">Customer Registration</a>
+
+
+</form>
+           </div>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

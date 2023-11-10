@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <link rel="stylesheet" href="{% static 'css/custom.css' %}">-->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <title>Registration Page</title>
+</head>
+<body style="background-color:#9370db;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Libre+Baskerville&family=Roboto:ital,wght@1,700&family=Young+Serif&display=swap" rel="stylesheet">
+<div class="Container">
+<center><h2>Customer Registration Form</h2></center>
+  </div>
+<div class="container">
+    <div class="col sm-6" >
+
+           <form id="CustForm" method="POST" data-branches-url="{% url 'bankapp:ajax_load_branches' %}" >
+
+             {% csrf_token %}
+               <table>
+             {{ form.as_table }}
+               </table>
+
+  <button type="submit" class="btn btn-success">Submit</button>
+   <a href="{% url 'credentials_app:logout' %}" class="btn btn-secondary">Logout</a>
+</form>
+
+        {% for msg in messages %}
+            <h4 style="color:red;">{{msg}}</h4>
+        {% endfor %}
+        <a href="{% url 'bankapp:home' %}" style="color:black;"><strong>Home Page</strong></a>
+    </div>
+
+</div>
+</div>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_District").change(function () {
+    const url = $("#CustForm").attr("data-branches-url");
+    const DistrictId = $(this).val();
+     $.ajax({
+            url: url,
+            data: {
+                'District_id': DistrictId
+            },
+            success: function (data) {
+                console.log(data)
+                $("#id_Branch").html(data);
+            }
+        });
+
+    });
+
+</script>
+
+
+
+
+
+
+
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>
+
